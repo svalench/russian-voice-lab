@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f5ef">
+  <title>Голосовая — локальный разговор</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/assets/ort/ort.wasm.min.js"></script>
+  <script defer src="/static/assets/vad/bundle.min.js"></script>
+  <script type="module" src="/static/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Голосовая, главная"><span class="brand-icon">◒</span> голосовая<span class="lab">LAB</span></a>
+    <span class="local"><i></i> На вашем Mac · без облака</span>
+  </header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">РУССКИЙ ГОЛОСОВОЙ ЧАТ</p><h1>Просто начните говорить.</h1><p class="subtitle">Собеседник, которого можно перебить. Всё остаётся на этом компьютере.</p></div><span class="hardware" id="modelBadge">Apple Silicon / MLX</span></div>
+    <div id="error" class="error" role="alert" hidden></div>
+    <div class="layout">
+      <section class="voice-panel panel" aria-label="Управление разговором">
+        <div class="panel-top"><span class="eyebrow">ВАША СЕССИЯ</span><span id="connection" class="pill">Ожидание</span></div>
+        <div class="voice-space">
+          <div id="orb" class="orb"><div class="orb-inner"><span></span><span></span><span></span><span></span><span></span></div></div>
+          <h2 id="state" aria-live="polite">Загружаем модели</h2>
+          <p id="stateHint">Первый запуск может занять несколько минут.</p>
+          <div class="level" role="meter" aria-label="Уровень микрофона" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="level"></div></div>
+        </div>
+        <div class="actions"><button id="start" class="primary" disabled>● Начать разговор</button><button id="stop" class="secondary" disabled>■ Остановить</button></div>
+        <p class="small center">Для первого теста лучше надеть наушники.</p>
+        <div class="settings">
+          <div class="settings-row"><label for="voice">Голос <span id="voiceBackend"></span></label><div class="voice-choice"><select id="voice"><option>Ryan</option></select><button id="preview" class="icon-button" disabled title="Прослушать голос" aria-label="Прослушать голос">▷</button></div></div>
+          <label class="range-label" for="pause">Пауза до ответа <output id="pauseValue">700 мс</output></label><input id="pause" type="range" min="400" max="1600" step="100" value="700">
+          <label for="instruction">Каким будет собеседник?</label><textarea id="instruction" maxlength="2000" rows="3" placeholder="Например: помоги мне потренироваться в собеседовании. Задавай по одному вопросу."></textarea>
+        </div>
+      </section>
+      <section class="conversation panel" aria-label="Диалог">
+        <div class="panel-top"><span class="eyebrow">ДИАЛОГ</span><div class="text-actions"><button id="reset">Новый разговор</button><button id="export">Экспорт ↗</button></div></div>
+        <div id="messages" class="messages" role="log" aria-label="Текст разговора"><div id="empty" class="empty"><div class="empty-mark">“</div><h3>Здесь появится ваш разговор</h3><p>Нажмите «Начать разговор» и скажите что-нибудь.<br>После паузы собеседник ответит голосом.</p><span>Попробуйте: «Давай познакомимся»</span></div></div>
+        <div class="metrics"><div><span>Первый звук</span><strong id="metricFirst">—</strong></div><div><span>Распознавание</span><strong id="metricAsr">—</strong></div><div><span>Первый токен</span><strong id="metricLlm">—</strong></div><div><span>Синтез / аудио</span><strong id="metricRtf">—</strong></div></div>
+      </section>
+    </div>
+    <footer><div id="models">Подключение к локальному серверу…</div><span id="resources"></span></footer>
+  </main>
+</body>
+</html>

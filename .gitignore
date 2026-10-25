@@ -1,0 +1,17 @@
+.venv/
+.cache/
+.models/
+node_modules/
+web/assets/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+test-results/
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+voice-lab-*.json

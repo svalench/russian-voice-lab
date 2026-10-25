@@ -1,0 +1,29 @@
+[project]
+name = "russian-voice-lab"
+version = "0.1.0"
+description = "Offline Russian voice conversation lab for Apple Silicon"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "websockets>=15,<17",
+  "mlx-audio>=0.3.1,<0.5",
+  "mlx-lm>=0.31,<0.40",
+  "huggingface-hub>=1,<2",
+  "soundfile>=0.13,<1",
+  "numpy>=2,<3",
+  "psutil>=7,<8",
+]
+
+[project.optional-dependencies]
+fast-voice = ["piper-tts>=1.8,<2"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-asyncio>=0.25,<2", "httpx>=0.28,<1"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

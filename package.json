@@ -1,0 +1,9 @@
+{
+  "name": "russian-voice-lab-assets",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "@ricky0123/vad-web": "0.0.30",
+    "onnxruntime-web": "1.22.0"
+  }
+}
